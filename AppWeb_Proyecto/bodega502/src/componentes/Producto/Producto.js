@@ -1,6 +1,5 @@
 /* eslint-disable no-unused-vars */
 import './Producto.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import sillon from './sillonPrueba.jpg';
 import { Container } from 'react-bootstrap';
 import Col from 'react-bootstrap/Col';
