@@ -1,3 +1,4 @@
 .Imagen{
-  background: black;
+  width: 500px !important; 
+  height: auto !important;
 }

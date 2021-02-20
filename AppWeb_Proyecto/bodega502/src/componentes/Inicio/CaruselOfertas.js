@@ -1,9 +1,10 @@
-
-import {Carousel} from 'react-bootstrap';
+import React from 'react';
+import { Carousel } from 'react-bootstrap';
 import bodega from './sillon.jpg';
 import './Inicio.css';
 function Ofertas() {
   return (
+    
     <Carousel >
       <Carousel.Item>
         <img
@@ -27,6 +28,7 @@ function Ofertas() {
         />
       </Carousel.Item>
     </Carousel>
+      
   );
 }
 
