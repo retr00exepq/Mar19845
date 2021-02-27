@@ -36,7 +36,7 @@ function NavBar() {
           </Button>
         </Form>
         
-          <FaUserAlt className="icono" />
+         
         
       </Navbar.Collapse>
     </Navbar>
