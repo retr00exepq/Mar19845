@@ -5,6 +5,7 @@ import { Container } from 'react-bootstrap';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Carousel from './Carrousel';
+import React, { Component } from "react";
 
 export default function Producto(){
     return(    

@@ -8,6 +8,7 @@ import bodega from '../imagenes/bodega502.jpg';
 import './Navbar.css';
 import { FaSistrix } from 'react-icons/fa';
 import { FaUserAlt } from 'react-icons/fa';
+import React, { Component } from "react";
 
 
 //FaRegCircle

@@ -1,6 +1,7 @@
 import './Carrousel.css';
 import Carousel from "react-bootstrap/Carousel"
 import sillon from './sillonPrueba.jpg';
+import React, { Component } from "react";
 
 export default function Carrusel(){
     return(
