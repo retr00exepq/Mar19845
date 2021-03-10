@@ -64,9 +64,11 @@ class Editor extends Component {
               <text>0</text>    
           </div>
           <div className="grid_column">
-              <text>% de descuento por cuotas:</text>
+              <text>Numero de cuotas:</text>
               <input type="text" name="name" maxLength={50} className="number_input" value={this.state.value1} onChange={this.onChange1}/>
-              <text>Nuevo precio:</text>    
+              <text>% de valor agregado por cuota:</text>
+              <input type="text" name="name" maxLength={50} className="number_input" value={this.state.value1} onChange={this.onChange1}/>
+              <text>Ganancia total:</text>    
               <text>0</text>    
           </div>
         </div>
