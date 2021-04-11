@@ -30,7 +30,7 @@ class Editor extends Component {
 
   render() {
     return (
-      <div className="main_div">
+      <div className="main_div" data-testid="existe1">
         <div className="grid_row">
           <div>
               <text>Nombre del producto:</text>
