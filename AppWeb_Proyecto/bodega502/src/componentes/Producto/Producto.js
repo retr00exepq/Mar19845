@@ -7,6 +7,22 @@ import Row from 'react-bootstrap/Row';
 import Carousel from './Carrousel';
 import React, { Component } from "react";
 
+const  Odoo = require('odoo-xmlrpc')
+
+const odoo = new Odoo({
+  url: 'https://proyecto10.odoo.com',
+  //port: 80, /* Defaults to 80 if not specified */
+  db: 'proyecto10',
+  username : 'cot19324@uvg.edu.gt', /* Optional Like Change Language */
+  password: 'ProyectoSoft1234'
+})
+
+var params = {
+    domain:[['Precio de venta', '=', '4, 32']],
+    fields:['Precio de venta'],
+    offset: 0,
+}
+
 export default function Producto(){
     return(    
         <Container fluid>
@@ -15,7 +31,18 @@ export default function Producto(){
                     <Carousel></Carousel>
                 </Col>
                 <Col xs={6} sm={6} md={6} lg={6} className="Des">
-                    <p>Nombre:<br></br>
+                    <p>Nombre:
+                        {
+                            odoo.connect(function (err){
+                                if (err) { return console.log(err); }
+                                console.log('Connected to Odoo server.');
+                                Odoo.search_read('product.product', params, function(err, value){
+                                    if (err) {return console.log(err);}
+                                    console.log('result', value);
+                                })
+                            })
+                        }
+                        <br></br>
                     Precio:<br></br>
                     <details>
                         <summary>Descripción</summary><br></br>
