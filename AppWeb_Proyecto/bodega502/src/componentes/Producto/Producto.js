@@ -6,51 +6,38 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Carousel from './Carrousel';
 import React, { Component } from "react";
+//import odoo from '..../src/oddo.js'
 
-const  Odoo = require('odoo-xmlrpc')
 
-const odoo = new Odoo({
-  url: 'https://proyecto10.odoo.com',
-  //port: 80, /* Defaults to 80 if not specified */
-  db: 'proyecto10',
-  username : 'cot19324@uvg.edu.gt', /* Optional Like Change Language */
-  password: 'ProyectoSoft1234'
-})
+export default class Producto extends React.Component{
+    constructor(){
+        super();
 
-var params = {
-    domain:[['Precio de venta', '=', '4, 32']],
-    fields:['Precio de venta'],
-    offset: 0,
-}
+        this.state ={
+        nombre: "",
+        precio:"",
+        descripcion:"",
+        detalles:"",
+        }
+    }
 
-export default function Producto(){
+    consultar = () => {
+        this.setState({nombre: "Javier"})
+    }
+
+    render(){
     return(    
         <Container fluid>
             <Row >
                 <Col xs={6} sm={6} md={6} lg={6} className="Ima">
                     <Carousel></Carousel>
                 </Col>
-                <Col xs={6} sm={6} md={6} lg={6} className="Des">
-                    <p>Nombre:
-                        {
-                            odoo.connect(function (err){
-                                if (err) { return console.log(err); }
-                                console.log('Connected to Odoo server.');
-                                Odoo.search_read('product.product', params, function(err, value){
-                                    if (err) {return console.log(err);}
-                                    console.log('result', value);
-                                })
-                            })
-                        }
-                        <br></br>
-                    Precio:<br></br>
-                    <details>
-                        <summary>Descripción</summary><br></br>
-                    </details>
-                    <details>
-                        <summary>Detalles Técnicos</summary><br></br>
-                    </details>
-                    </p>
+                <Col xs={6} sm={6} md={6} lg={6} className="Des"> 
+                    <div /*NECESITO EJECUTAR ESTA CONSULTA AL CARGAR EL COMPONENTE
+                    */onClick = {() => this.consultar()}>Nombre:{this.state.nombre}</div> 
+                    <div>Precio:</div>
+                    <div>Descripción:</div> 
+                    <div>Cantidad disponible:</div>
                 </Col>
             </Row>
             <Row xs={12} sm={12} md={12} lg={12}>
@@ -58,5 +45,6 @@ export default function Producto(){
             </Row>
         </Container>
     );
+                    }
 }
 
