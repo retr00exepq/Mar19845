@@ -1,5 +1,6 @@
 const  Odoo = require('odoo-xmlrpc')
 
+
 const odoo = new Odoo({
   url: 'https://proyecto10.odoo.com/',
   db: 'proyecto10',
@@ -8,6 +9,7 @@ const odoo = new Odoo({
 })
 
 odoo.connect(function (err) {
+  
   if (err) { return console.log(err); }
   console.log('Connected to Odoo server.');
   var inParams = [];
@@ -22,8 +24,9 @@ odoo.connect(function (err) {
   });
 });
 
+/*
 //CONSULTA PARA MODULO PRODUCTO
-/*odoo.connect(function (err) {
+odoo.connect(function (err) {
   if (err) { return console.log(err); }
   console.log('Connected to Odoo server.');
   var inParams = [];
@@ -36,4 +39,5 @@ odoo.connect(function (err) {
       if (err) { return console.log(err); }
       console.log('Result: ', value);
   });
-});*/
+})
+*/
