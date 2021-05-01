@@ -14,6 +14,7 @@ const odoo = new Odoo({
     cors: 'True'
 })
 app.get('/', (req, res) => {
+    
     odoo.connect(function (err) {
 
         if (err) { return console.log(err); }
@@ -39,7 +40,7 @@ app.get('/productos', (req, res) => {
         var inParams = [];
         //inParams.push([['active', '=', false], ['display_name', '=', nombre], ['list_price', '=', precio], ['description': descripcion] ['qty_available', '=', cantidad], ]);
         inParams.push([])
-        inParams.push(['display_name', 'list_price', 'description', 'qty_available']);
+        inParams.push(['display_name', 'list_price', 'description', 'qty_available','image_1920']);
         var params = [];
         params.push(inParams);
       

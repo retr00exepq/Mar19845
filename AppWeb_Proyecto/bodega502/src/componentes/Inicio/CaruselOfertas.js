@@ -17,6 +17,7 @@ function Ofertas() {
   const [precio, setP] = useState('Javier');
   const [desc, setD] = useState('Javier');
   const [qua, setQ] = useState('Javier');
+  const[imag,setI]= useState()
   function prueba() {
     fetch('http://localhost:3001/productos')
       .then(response => response.json())
@@ -27,11 +28,12 @@ function Ofertas() {
   useEffect(() => {
     prueba()
   }, []);
-  const producto = (name,price,description,quantity) => {
+  const producto = (name,price,description,quantity,image_1920) => {
        SetName(name)
        setP(price)
        setD(description)
        setQ(quantity)
+       setI(image_1920)
   }
   return (
     <div>
@@ -39,7 +41,7 @@ function Ofertas() {
 
 
         {users && users.filter(data=>{
-            if (data.description === 'Luces'){
+            if (data.description === 'Utiles oficina'){
               return data
             }
         }).map(data => {
@@ -49,11 +51,11 @@ function Ofertas() {
               
               <img
                 id={data.id}
-                src=''
+                src={data.image_1920}
                 alt={data.display_name}
                 className="Imagen"
                 onClick={()=>{
-                  producto(data.display_name,data.list_price,data.description,data.qty_available)
+                  producto(data.display_name,data.list_price,data.description,data.qty_available,data.image_1920)
                 }}
               />
             </Carousel.Item>
@@ -62,7 +64,7 @@ function Ofertas() {
         })}
       </Carousel>
       <div>
-        <Producto name={name} price={precio} description={desc} quantity={qua}/>
+        <Producto name={name} price={precio} description={desc} quantity={qua} image_1920={imag}/>
       </div>
     </div>
   );

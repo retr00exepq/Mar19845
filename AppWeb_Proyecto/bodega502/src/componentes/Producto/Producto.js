@@ -34,6 +34,7 @@ export default class Producto extends React.Component{
             <Row >
                 <Col xs={6} sm={6} md={6} lg={6} className="Ima">
                     <Carousel></Carousel>
+                    <img src ={this.props.image_1920} alt='image_1920'/>
                 </Col>
                 <Col xs={6} sm={6} md={6} lg={6} className="Des"> 
                     <div /*NECESITO EJECUTAR ESTA CONSULTA AL CARGAR EL COMPONENTE
