@@ -1,11 +1,12 @@
-const  Odoo = require('odoo-xmlrpc')
-
+const Odoo = require('odoo-xmlrpc')
+require('dotenv').config()
 
 const odoo = new Odoo({
-  url: 'https://proyecto10.odoo.com/',
-  db: 'proyecto10',
-  username : 'cot19324@uvg.edu.gt',
-  password: 'ProyectoSoft1234'
+    url: process.env.REACT_APP_URL,
+    db: process.env.REACT_APP_DB,
+    username: process.env.REACT_APP_USERNAME,
+    password: process.env.REACT_APP_PASSWORD,
+    cors: 'True'
 })
 
 odoo.connect(function (err) {
