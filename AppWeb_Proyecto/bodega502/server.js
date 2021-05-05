@@ -61,7 +61,7 @@ app.post('/getProduct',(req,res)=>{
         console.log('getPr');
         var inParams = [];
         //inParams.push([['active', '=', false], ['display_name', '=', nombre], ['list_price', '=', precio], ['description': descripcion] ['qty_available', '=', cantidad], ]);
-        inParams.push(['id', '=', id])
+        inParams.push([])
         inParams.push(['display_name', 'list_price', 'description', 'qty_available']);
         var params = [];
         params.push(inParams);

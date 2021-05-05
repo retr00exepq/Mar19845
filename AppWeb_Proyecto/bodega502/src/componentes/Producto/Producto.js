@@ -14,7 +14,7 @@ export default function Producto({ match }) {
     function prueba() {
         fetch('http://localhost:3001/getProduct',{method: "POST", 
         headers: { "content-type": "application/json" },
-        body: JSON.stringify({"id": match.params.id})})
+        body: JSON.stringify({"id": parseInt(match.params.id)})})
             .then(response => response.json())
             .then(data =>
                 console.log(data)
