@@ -10,15 +10,16 @@ import React, { Component, useEffect, useState } from "react";
 
 
 export default function Producto({ match }) {
-    const [product, SetProduct] = useState([]);
-    function prueba() {
-        fetch('http://localhost:3001/getProduct',{method: "POST", 
+    const [product, SetProduct] = useState({});
+    async function prueba() {
+        await fetch('http://localhost:3001/getProduct',{method: "POST", 
         headers: { "content-type": "application/json" },
-        body: JSON.stringify({"id": parseInt(match.params.id)})})
+        body: JSON.stringify({"id": match.params.id})})
             .then(response => response.json())
-            .then(data =>
-                console.log(data)
-            )
+            .then(data =>{
+                SetProduct(data[0])
+                console.log(data[0])
+            })
         
     }
     useEffect(() => {
@@ -32,10 +33,10 @@ export default function Producto({ match }) {
 
                 </Col>
                 <Col xs={6} sm={6} md={6} lg={6} className="Des">
-                    <div>Nombre:{ }</div>
-                    <div>Precio: { }</div>
-                    <div>Descripción:{ }</div>
-                    <div>Cantidad disponible:{ }</div>
+                    <div>Nombre: {product.display_name}</div>
+                    <div>Precio: {product.list_price}</div>
+                    <div>Descripción: {product.description}</div>
+                    <div>Cantidad disponible: {product.qty_available}</div>
                 </Col>
             </Row>
             <Row xs={12} sm={12} md={12} lg={12}>
