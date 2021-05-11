@@ -1,48 +1,51 @@
-import React from 'react';
-import Slider from "react-slick";
-import sofa from './sillon.jpg'
+import React, { Component, useEffect, useState } from "react";
 import './Categorias.css'
-
+import { Link } from "react-router-dom";
+import Card from 'react-bootstrap/Card';
+import Button from 'react-bootstrap/Button'
 function Categorias() {
-    const settings = {
-        dots: true,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 3,
-        slidesToScroll: 3
-    };
+    const [productos, setUser] = useState([]);
+
+
+    async function prueba() {
+        await fetch('http://localhost:3001/productos')
+            .then(response => response.json())
+            .then(data =>
+                setUser(data)
+            );
+    }
+
+    useEffect(() => {
+        prueba()
+    }, []);
+
     return (
         <div>
-            <h1>Muebles Y Camas</h1>
-            <Slider {...settings} className="SliderC">
-                <div>
-                    <h3>1</h3>
+            <div class=".container-fluid">
+                <div class="row row-cols-4">
+                    {
+                        productos.map(data => {
+                            return (
+                                <div key ={data.id}class="col">
+                                    <Card style={{ width: '18rem' }}>
+                                        <Card.Img variant="top" src="" />
+                                        <Card.Body>
+                                            <Card.Title>{data.display_name}</Card.Title>
+                                            <Card.Text>
+                                                {data.description}
+                                            </Card.Text>
+                                            <Link to={`/producto/${data.id}`}>
+                                                <Button variant="primary">Ver Producto</Button>
+                                            </Link>
+                                            
+                                        </Card.Body>
+                                    </Card>
+                                </div>
+                            )
+                        })
+                    }
                 </div>
-                <div>
-                    <h3>2</h3>
-                </div>
-                <div>
-                    <h3>3</h3>
-                </div>
-                <div>
-                    <h3>4</h3>
-                </div>
-                <div>
-                    <h3>5</h3>
-                </div>
-                <div>
-                    <h3>6</h3>
-                </div>
-                <div>
-                    <h3>7</h3>
-                </div>
-                <div>
-                    <h3>8</h3>
-                </div>
-                <div>
-                    <h3>9</h3>
-                </div>
-            </Slider>
+            </div>
         </div>
     )
 

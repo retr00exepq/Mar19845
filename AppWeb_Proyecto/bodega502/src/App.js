@@ -35,7 +35,8 @@ function App() {
 const Home = () => {
   return (
     <div>
-      HOme page pa
+      
+      <Categorias/>
     </div>
   )
 }

@@ -14,8 +14,8 @@ function Ofertas() {
   const [users, setUser] = useState([]);
 
   
-  function prueba() {
-    fetch('http://localhost:3001/productos')
+  async function prueba() {
+    await fetch('http://localhost:3001/productos')
       .then(response => response.json())
       .then(data =>
         setUser(data)
@@ -39,23 +39,14 @@ function Ofertas() {
           return (
             <div>
               <Carousel.Item key={data.id}>
-
+              <Link to={`/producto/${data.id}`}>
                 <img
                   id={data.id}
-                  src={data.image_1920}
+                  src={cama}
                   alt={data.display_name}
-                  className="Imagen"
-                  
-                />
+                  className="Imagen"/>
+                </Link>
               </Carousel.Item>
-
-              <div>
-                <h1  key={data.id}>
-                  <Link to={`/producto/${data.id}`}>
-                    {data.display_name}
-                  </Link>
-                </h1>
-              </div>
             </div>
           )
 
