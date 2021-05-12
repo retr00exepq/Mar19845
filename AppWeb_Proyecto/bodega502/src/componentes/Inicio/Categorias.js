@@ -21,14 +21,14 @@ function Categorias() {
 
     return (
         <div>
-            <div class=".container-fluid">
+            <div class=".container-sm">
                 <div class="row row-cols-4">
                     {
                         productos.map(data => {
                             return (
                                 <div key ={data.id}class="col">
                                     <Card style={{ width: '18rem' }}>
-                                        <Card.Img variant="top" src="" />
+                                        <Card.Img variant="top" src={`data:image/png;base64,${data.image_1920}`} />
                                         <Card.Body>
                                             <Card.Title>{data.display_name}</Card.Title>
                                             <Card.Text>

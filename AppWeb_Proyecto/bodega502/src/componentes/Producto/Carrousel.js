@@ -3,7 +3,7 @@ import Carousel from "react-bootstrap/Carousel"
 import sillon from './sillonPrueba.jpg';
 import React, { Component } from "react";
 
-export default function Carrusel(){
+export default function Carrusel(props){
     return(
         <Carousel>
             <Carousel.Item>

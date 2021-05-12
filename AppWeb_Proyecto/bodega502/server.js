@@ -42,7 +42,7 @@ app.get('/productos', (req, res) => {
         var inParams = [];
         //inParams.push([['active', '=', false], ['display_name', '=', nombre], ['list_price', '=', precio], ['description': descripcion] ['qty_available', '=', cantidad], ]);
         inParams.push([])
-        inParams.push(['display_name', 'list_price', 'description', 'qty_available']);
+        inParams.push(['display_name', 'list_price', 'description', 'qty_available','image_1920']);
         var params = [];
         params.push(inParams);
       
@@ -73,6 +73,28 @@ app.post('/getProduct',(req,res)=>{
         });
       })
     //res.send({'id':'1'})
+})
+
+
+app.get('/img', (req, res) => {
+    
+    odoo.connect(function (err) {
+
+        if (err) { return console.log(err); }
+        console.log('Connected to Odoo server.');
+        var inParams = [];
+        inParams.push([]);
+        inParams.push(['description','display_name','image_512'])
+        var params = [];
+        params.push(inParams);
+
+        odoo.execute_kw('product.product', 'search_read', params, function (err, value) {
+            if (err) { return console.log(err); }
+            console.log('Result: ', value);
+            res.send(value)
+        });
+    });
+    //res.send('Hello World!')
 })
 
 app.listen(port, () => {

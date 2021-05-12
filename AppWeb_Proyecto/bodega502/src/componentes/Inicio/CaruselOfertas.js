@@ -42,7 +42,7 @@ function Ofertas() {
               <Link to={`/producto/${data.id}`}>
                 <img
                   id={data.id}
-                  src={cama}
+                  src={data.image_1920}
                   alt={data.display_name}
                   className="Imagen"/>
                 </Link>
