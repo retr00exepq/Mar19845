@@ -1,8 +1,6 @@
 import React, { Component, useEffect, useState } from "react";
-import './Categorias.css'
+import './Categ.scss'
 import { Link } from "react-router-dom";
-import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button'
 function Categorias() {
     const [productos, setUser] = useState([]);
 
@@ -18,7 +16,42 @@ function Categorias() {
     useEffect(() => {
         prueba()
     }, []);
-
+    function Card(props) {
+        return (
+            <div className="card">
+                <img src={`data:image/png;base64,${props.img}`} className="card__img" alt='alt' />
+                <div className="card__body">
+                    <h2 className="card__title">{props.title}</h2>
+                    <p className="card__description">{props.description}</p>
+                    <h3 className="card__price">{parseFloat(props.price).toFixed(2)}</h3>
+                    <Link to={`/producto/${props.id}`}>
+                        <button className="card__btn">See Product</button>
+                    </Link>
+                    
+                </div>
+            </div>
+        );
+    }
+    return (
+        <div>
+            <div className="wrapper">
+                {
+                    productos.map(data => {
+                        return (
+                            <Card
+                                img={data.image_1920}
+                                title={data.display_name}
+                                description={data.description}
+                                price={data.list_price}
+                                id={data.id}
+                            />
+                        )
+                    })
+                }
+            </div>
+        </div>
+    )
+    /**
     return (
         <div>
             <div class=".container-sm">
@@ -48,6 +81,6 @@ function Categorias() {
             </div>
         </div>
     )
-
+    **/
 }
 export default Categorias;

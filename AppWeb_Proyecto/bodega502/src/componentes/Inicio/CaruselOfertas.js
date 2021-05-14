@@ -1,19 +1,27 @@
-import React, { Component, useEffect, useState } from "react";
-import { Carousel } from 'react-bootstrap';
-import bodega from './sillon.jpg';
-import sillon from './Sillon2.jpg';
-import cama from './Cama.jpg';
 import './Inicio.css';
-import Producto from "../Producto/Producto";
-import { Link } from "react-router-dom";
+import "swiper/swiper.min.css";
+import "swiper/components/pagination/pagination.min.css"
+import "swiper/components/navigation/navigation.min.css"
+//className="CaruselDiv"
 
+import React, { Component, useEffect, useRef, useState } from "react";
+import { Carousel } from 'react-bootstrap';
+import { Link } from "react-router-dom";
+import { Swiper, SwiperSlide } from "swiper/react";
+// import Swiper core and required modules
+import SwiperCore, {
+  Pagination,Navigation
+} from 'swiper/core';
+
+// install Swiper modules
+SwiperCore.use([Pagination,Navigation]);
 
 //className="CaruselDiv"
 function Ofertas() {
 
   const [users, setUser] = useState([]);
 
-  
+
   async function prueba() {
     await fetch('http://localhost:3001/productos')
       .then(response => response.json())
@@ -21,38 +29,26 @@ function Ofertas() {
         setUser(data)
       );
   }
-  
+
   useEffect(() => {
     prueba()
   }, []);
-  
+
   return (
-    <div>
-      <Carousel >
-
-
-        {users && users.filter(data => {
-          if (data.description === 'Utiles oficina') {
-            return data
-          }
-        }).map(data => {
-          return (
-            <div>
-              <Carousel.Item key={data.id}>
-              <Link to={`/producto/${data.id}`}>
-                <img
-                  id={data.id}
-                  src={data.image_1920}
-                  alt={data.display_name}
-                  className="Imagen"/>
-                </Link>
-              </Carousel.Item>
-            </div>
-          )
-
-        })}
-      </Carousel>
-
+    <div className='carCon'>
+      <Swiper slidesPerView={1} spaceBetween={30} loop={true} pagination={{
+        "clickable": true
+      }} navigation={true} className="mySwiper">
+        <SwiperSlide>Slide 1</SwiperSlide>
+        <SwiperSlide>Slide 2</SwiperSlide>
+        <SwiperSlide>Slide 3</SwiperSlide>
+        <SwiperSlide>Slide 4</SwiperSlide>
+        <SwiperSlide>Slide 5</SwiperSlide>
+        <SwiperSlide>Slide 6</SwiperSlide>
+        <SwiperSlide>Slide 7</SwiperSlide>
+        <SwiperSlide>Slide 8</SwiperSlide>
+        <SwiperSlide>Slide 9</SwiperSlide>
+      </Swiper>
     </div>
   );
 }
