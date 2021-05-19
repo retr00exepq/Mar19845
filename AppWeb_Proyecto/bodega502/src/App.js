@@ -35,7 +35,7 @@ function App() {
 const Home = () => {
   return (
     <div>
-      
+      <Ofertas/>
       <Categorias/>
     </div>
   )

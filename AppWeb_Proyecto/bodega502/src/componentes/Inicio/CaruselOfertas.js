@@ -1,4 +1,4 @@
-import './Inicio.css';
+import './CaruselOfertas.css';
 import "swiper/swiper.min.css";
 import "swiper/components/pagination/pagination.min.css"
 import "swiper/components/navigation/navigation.min.css"

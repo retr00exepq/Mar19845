@@ -1,8 +1,10 @@
 import React, { Component, useEffect, useState } from "react";
 import './Categ.scss'
 import { Link } from "react-router-dom";
+import Spinner from 'react-bootstrap/Spinner';
 function Categorias() {
     const [productos, setUser] = useState([]);
+    const [Loading,setLoading]= useState(false)
 
 
     async function prueba() {
@@ -11,12 +13,15 @@ function Categorias() {
             .then(data =>
                 setUser(data)
             );
+        setLoading(true)
     }
 
     useEffect(() => {
         prueba()
     }, []);
+
     function Card(props) {
+        
         return (
             <div className="card">
                 <img src={`data:image/png;base64,${props.img}`} className="card__img" alt='alt' />
@@ -31,11 +36,14 @@ function Categorias() {
                 </div>
             </div>
         );
+        
+        
     }
     return (
         <div>
             <div className="wrapper">
                 {
+                    Loading ?
                     productos.map(data => {
                         return (
                             <Card
@@ -47,6 +55,8 @@ function Categorias() {
                             />
                         )
                     })
+                    :
+                    <Spinner animation="border" />
                 }
             </div>
         </div>
