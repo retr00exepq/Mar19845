@@ -50,33 +50,19 @@ class Editor extends Component {
             />
           </div>
         </div>
-        <div className="grid_row" style={{marginTop: "100px", height: "250px"}}>
-          <div className="grid_column">
-              <text>Precio del producto (Q):</text>
-              <input type="text" name="name" maxLength={50} className="number_input" value={this.state.value1} onChange={this.onChange1}/>
+        <div className="grid_row" style={{marginTop: "100px", height: "250px", paddingLeft: "100px"}}>
+            <text>Precio del producto (Q):</text>
+            <input type="text" name="name" maxLength={50} className="number_input" value={this.state.value1} onChange={this.onChange1}/>
+            <div style={{paddingLeft: "100px"}}>
               <text>Cantidad en existencia:</text>
               <input type="text" name="name" maxLength={50} className="number_input" value={this.state.value2} onChange={this.onChange2}/>
-          </div>
-          <div className="grid_column">
-              <text>% de descuento con tarjeta:</text>
-              <input type="text" name="name" maxLength={50} className="number_input" value={this.state.value1} onChange={this.onChange1}/>
-              <text>Nuevo precio:</text>    
-              <text>0</text>    
-          </div>
-          <div className="grid_column">
-              <text>Numero de cuotas:</text>
-              <input type="text" name="name" maxLength={50} className="number_input" value={this.state.value1} onChange={this.onChange1}/>
-              <text>% de valor agregado por cuota:</text>
-              <input type="text" name="name" maxLength={50} className="number_input" value={this.state.value1} onChange={this.onChange1}/>
-              <text>Ganancia total:</text>    
-              <text>0</text>    
-          </div>
+            </div>
         </div>
-        <div className="grid_row_p" style={{marginTop: "400px", gridAutoFlow: "row"}}>
+        <div className="grid_row_p" style={{marginTop: "200px", gridAutoFlow: "row"}}>
           <text>Descripcion del producto</text>
           <textarea className="description" type="text" name="name" maxLength={500}/>
         </div>
-        <div className="grid_row" style={{marginTop: "1000px", left: "26%", gap: "10rem"}}>
+        <div className="grid_row" style={{marginTop: "800px", left: "26%", gap: "10rem"}}>
             <button className='guardar_button' type="button">Guardar Cambios</button>
             <button className='eliminar_button' type="button">Eliminar Publicacion</button>
         </div>
