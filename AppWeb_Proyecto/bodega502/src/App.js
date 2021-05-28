@@ -23,9 +23,10 @@ function App() {
         <Switch>
           <Route path='/' exact component={Home} />
           <Route path='/oferta' exact component={Ofertas} />
-          <Route path='/editor' component={Editor} />
+          <Route path='/editor' exact component={Editor} />
           
           <Route path='/producto/:id' component={Producto} />
+          <Route path='/editor/:id' component={Editor} />
         </Switch>
 
       </div>

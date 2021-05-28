@@ -33,7 +33,7 @@ class Editor extends Component {
       <div className="main_div" data-testid="existe1">
         <div className="grid_row">
           <div>
-              <text>Nombre del producto:</text>
+              <text>Nombre del producto: {this.props.match.params.id}</text>
               <input type="text" name="name" maxLength={50} className="title_input"/>
           </div>
           <div>
@@ -51,7 +51,7 @@ class Editor extends Component {
           </div>
         </div>
         <div className="grid_row" style={{marginTop: "100px", height: "250px", paddingLeft: "100px"}}>
-            <text>Precio del producto (Q):</text>
+            <text>Precio del producto (Q): </text>
             <input type="text" name="name" maxLength={50} className="number_input" value={this.state.value1} onChange={this.onChange1}/>
             <div style={{paddingLeft: "100px"}}>
               <text>Cantidad en existencia:</text>

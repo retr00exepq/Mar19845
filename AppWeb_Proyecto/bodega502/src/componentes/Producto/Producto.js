@@ -6,6 +6,7 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Carousel from './Carrousel';
 import React, { Component, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 //import odoo from '..../src/oddo.js'
 
 
@@ -18,7 +19,7 @@ export default function Producto({ match }) {
             .then(response => response.json())
             .then(data =>{
                 SetProduct(data[0])
-                console.log(data[0])
+                
             })
         
     }
@@ -37,6 +38,9 @@ export default function Producto({ match }) {
                     <div>Precio: {product.list_price}</div>
                     <div>Descripción: {product.description}</div>
                     <div>Cantidad disponible: {product.qty_available}</div>
+                    <Link to={`/editor/${product.id}`}>
+                        <button className="card__btn">Editar product</button>
+                    </Link>
                 </Col>
             </Row>
             <Row xs={12} sm={12} md={12} lg={12}>
