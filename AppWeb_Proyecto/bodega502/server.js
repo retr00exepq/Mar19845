@@ -20,7 +20,7 @@ app.get('/', (req, res) => {
     odoo.connect(function (err) {
 
         if (err) { return console.log(err); }
-        console.log('Connected to Odoo server.');
+        //console.log('Connected to Odoo server.');
         var inParams = [];
         inParams.push([['active', '=', false]]);
         inParams.push(['description'])
@@ -38,7 +38,7 @@ app.get('/', (req, res) => {
 app.get('/productos', (req, res) => {
     odoo.connect(function (err) {
         if (err) { return console.log(err); }
-        console.log('Connected to Odoo server.');
+        //console.log('Connected to Odoo server.');
         var inParams = [];
         //inParams.push([['active', '=', false], ['display_name', '=', nombre], ['list_price', '=', precio], ['description': descripcion] ['qty_available', '=', cantidad], ]);
         inParams.push([])
@@ -55,10 +55,10 @@ app.get('/productos', (req, res) => {
 })
 app.post('/getProduct',(req,res)=>{
     let id = req.body.id;
-    console.log(req.body)
+    //console.log(req.body)
     odoo.connect(function (err) {
         if (err) { return console.log(err); }
-        console.log('getPr');
+        //console.log('getPr');
         var inParams = [];
         //inParams.push([['active', '=', false], ['display_name', '=', nombre], ['list_price', '=', precio], ['description': descripcion] ['qty_available', '=', cantidad], ]);
         inParams.push([['id', '=', id]])
@@ -81,7 +81,7 @@ app.get('/img', (req, res) => {
     odoo.connect(function (err) {
 
         if (err) { return console.log(err); }
-        console.log('Connected to Odoo server.');
+        //console.log('Connected to Odoo server.');
         var inParams = [];
         inParams.push([]);
         inParams.push(['description','display_name','image_512'])
@@ -90,11 +90,31 @@ app.get('/img', (req, res) => {
 
         odoo.execute_kw('product.product', 'search_read', params, function (err, value) {
             if (err) { return console.log(err); }
-            console.log('Result: ', value);
+            //console.log('Result: ', value);
             res.send(value)
         });
     });
     //res.send('Hello World!')
+})
+
+app.post('/actualizar',(req,res)=>{
+    let id = req.body.id;
+    let qty_available = req.body.qty_available
+    odoo.connect(function (err) {
+        if (err) { return console.log(err); }
+        var inParams = [];
+        //inParams.push([['active', '=', false], ['display_name', '=', nombre], ['list_price', '=', precio], ['description': descripcion] ['qty_available', '=', cantidad], ]);
+        inParams.push([['id', '=', id]])
+        inParams.push({'qty_available': `${qty_available}`});
+        var params = [];
+        params.push(inParams);      
+        odoo.execute_kw('product.product', 'write', params, function (err, value) {
+            if (err) { return console.log(err); }
+            res.send(value)
+                //res.send(id)
+        });
+      })
+    //res.send({'id':'1'})
 })
 
 app.listen(port, () => {

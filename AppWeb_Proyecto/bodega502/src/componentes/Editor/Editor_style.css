@@ -39,6 +39,12 @@ label input {
     height: 30px;
 }
 
+.number_inputt::-webkit-outer-spin-button,
+.number_input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
 .basic-single {
     width: 150px;
     text-align: center;
