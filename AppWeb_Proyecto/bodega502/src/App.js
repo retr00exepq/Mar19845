@@ -6,6 +6,7 @@ import Ofertas from "./componentes/Inicio/CaruselOfertas";
 import Categorias from "./componentes/Inicio/Categorias";
 import Producto from "./componentes/Producto/Producto";
 import Editor from "./componentes/Editor/Editor";
+import Login from "./componentes/Login/Login"
 import './custom.scss';
 import React, { Component } from "react";
 import {
@@ -36,8 +37,7 @@ function App() {
 const Home = () => {
   return (
     <div>
-      <Ofertas/>
-      <Categorias/>
+      <Login/>
     </div>
   )
 }
