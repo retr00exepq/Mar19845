@@ -97,24 +97,33 @@ app.get('/img', (req, res) => {
     //res.send('Hello World!')
 })
 
-app.post('/actualizar',(req,res)=>{
+app.post('/act',(req,res)=>{
     let id = req.body.id;
     let qty_available = req.body.qty_available
-    odoo.connect(function (err) {
-        if (err) { return console.log(err); }
-        var inParams = [];
-        //inParams.push([['active', '=', false], ['display_name', '=', nombre], ['list_price', '=', precio], ['description': descripcion] ['qty_available', '=', cantidad], ]);
-        inParams.push([['id', '=', id]])
-        inParams.push({'qty_available': `${qty_available}`});
-        var params = [];
-        params.push(inParams);      
-        odoo.execute_kw('product.product', 'write', params, function (err, value) {
+    let name = req.body.display_name
+    let price = req.body.list_price
+    let description = req.body.description
+    let cambios = true
+    if (name === '' && description === ''){
+        cambios = false
+    }
+    if (cambios){
+        odoo.connect(function (err) {
             if (err) { return console.log(err); }
-            res.send(value)
-                //res.send(id)
-        });
-      })
-    //res.send({'id':'1'})
+            var inParams = [];
+            inParams.push([['id', '=', id]])
+            inParams.push({'qty_available': qty_available});
+            var params = [];
+            params.push(inParams);      
+            odoo.execute_kw('product.product', 'search_read', params, function (err, value) {
+                if (err) { return console.log(err); }
+                res.send(value)
+            });
+        })
+    }
+    if (!cambios){
+        console.log('No hubo cambios')
+    }
 })
 
 app.listen(port, () => {

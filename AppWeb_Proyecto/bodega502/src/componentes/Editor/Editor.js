@@ -24,12 +24,25 @@ export default function Editor({ match }) {
 
   async function actualizar() {
     console.log(newQuantity)
-    await fetch('http://localhost:3001/actualizar',{method: "POST", 
+    if (!newName){
+      setValue0(product.display_name)
+    }
+    if (newPrice < 0){
+      setValue1(product.list_price)
+    }
+    if (newQuantity < 0){
+      setValue2(product.qty_available)
+    }
+    if (!newDescription){
+      setValue3(product.description)
+    }
+
+    await fetch('http://localhost:3001/act',{method: "POST", 
     headers: { "content-type": "application/json" },
     body: JSON.stringify({"id": match.params.id,
-                          display_name: newName,
+                          "display_name": newName,
                           "list_price": newPrice,
-                          qty_available: parseInt(newQuantity),
+                          "qty_available": parseInt(newQuantity),
                           "description": newDescription
                         })})
         .then(response => response.json())
@@ -38,10 +51,10 @@ export default function Editor({ match }) {
         })
   }
 
-  const [newName, setValue0] = useState(product.display_name)
-  const [newPrice, setValue1] = useState(product.list_price)
-  const [newQuantity, setValue2] = useState(0)
-  const [newDescription, setValue3] = useState(product.description)
+  const [newName, setValue0] = useState('')
+  const [newPrice, setValue1] = useState(-1)
+  const [newQuantity, setValue2] = useState(-1)
+  const [newDescription, setValue3] = useState('')
   
   // function financial(x) {
   //   return Number.parseFloat(x).toFixed(2);
