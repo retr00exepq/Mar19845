@@ -24,26 +24,13 @@ export default function Editor({ match }) {
 
   async function actualizar() {
     console.log(newQuantity)
-    if (!newName){
-      setValue0(product.display_name)
-    }
-    if (newPrice < 0){
-      setValue1(product.list_price)
-    }
-    if (newQuantity < 0){
-      setValue2(product.qty_available)
-    }
-    if (!newDescription){
-      setValue3(product.description)
-    }
-
     await fetch('http://localhost:3001/act',{method: "POST", 
     headers: { "content-type": "application/json" },
     body: JSON.stringify({"id": match.params.id,
-                          "display_name": newName,
-                          "list_price": newPrice,
-                          "qty_available": parseInt(newQuantity),
-                          "description": newDescription
+                          "display_name": newName === '' ? product.display_name : newName,
+                          "list_price": newPrice < 0 ? product.list_price : newPrice,
+                          "qty_available": newQuantity < 0 ? product.qty_available : parseInt(newQuantity),
+                          "description": newDescription === '' ? product.description : newDescription
                         })})
         .then(response => response.json())
         .then(data =>{

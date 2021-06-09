@@ -103,27 +103,19 @@ app.post('/act',(req,res)=>{
     let name = req.body.display_name
     let price = req.body.list_price
     let description = req.body.description
-    let cambios = true
-    if (name === '' && description === ''){
-        cambios = false
-    }
-    if (cambios){
-        odoo.connect(function (err) {
+    console.log(req.body)
+    odoo.connect(function (err) {
+        if (err) { return console.log(err); }
+        var inParams = [];
+        inParams.push([['id', '=', id]])
+        inParams.push({'qty_available': qty_available});
+        var params = [];
+        params.push(inParams);      
+        odoo.execute_kw('product.product', 'search_read', params, function (err, value) {
             if (err) { return console.log(err); }
-            var inParams = [];
-            inParams.push([['id', '=', id]])
-            inParams.push({'qty_available': qty_available});
-            var params = [];
-            params.push(inParams);      
-            odoo.execute_kw('product.product', 'search_read', params, function (err, value) {
-                if (err) { return console.log(err); }
-                res.send(value)
-            });
-        })
-    }
-    if (!cambios){
-        console.log('No hubo cambios')
-    }
+            res.send(value)
+        });
+      })
 })
 
 app.listen(port, () => {
