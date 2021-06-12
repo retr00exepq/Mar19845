@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import Select from 'react-select';
 import "./Editor_style.css";
 
 export default function Editor({ match }) { 
-  // setValue0(product.display_name) 
-  //       setValue1(product.list_price) 
-  //       setValue2(product.qty_available) 
-  //       setValue3(product.description) 
 
   const [product, SetProduct] = useState({});
     async function prueba() {
@@ -26,12 +23,22 @@ export default function Editor({ match }) {
     console.log(newQuantity)
     await fetch('http://localhost:3001/act',{method: "POST", 
     headers: { "content-type": "application/json" },
-    body: JSON.stringify({"id": match.params.id,
+    body: JSON.stringify({"id": parseInt(match.params.id),
                           "display_name": newName === '' ? product.display_name : newName,
-                          "list_price": newPrice < 0 ? product.list_price : newPrice,
+                          "list_price": newPrice < 0 ? product.list_price : parseFloat(newPrice),
                           "qty_available": newQuantity < 0 ? product.qty_available : parseInt(newQuantity),
                           "description": newDescription === '' ? product.description : newDescription
                         })})
+        .then(response => response.json())
+        .then(data =>{
+            SetProduct(data[0])          
+        })
+  }
+
+  async function eliminar() {
+    await fetch('http://localhost:3001/delete',{method: "POST", 
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({"id": parseInt(match.params.id)})})
         .then(response => response.json())
         .then(data =>{
             SetProduct(data[0])          
@@ -42,10 +49,6 @@ export default function Editor({ match }) {
   const [newPrice, setValue1] = useState(-1)
   const [newQuantity, setValue2] = useState(-1)
   const [newDescription, setValue3] = useState('')
-  
-  // function financial(x) {
-  //   return Number.parseFloat(x).toFixed(2);
-  // }
   
   const options = [
     { value: 'mueble', label: 'Mueble' },
@@ -103,8 +106,12 @@ export default function Editor({ match }) {
           <textarea className="description" type="text" name="name" maxLength={500} defaultValue={product.description} onChange={onChange3}/>
         </div>
         <div className="grid_row" style={{marginTop: "800px", left: "26%", gap: "10rem"}}>
+          <Link to={"../"}>
             <button className='guardar_button' type="button" onClick={() => {actualizar()}}>Guardar Cambios</button>
-            <button className='eliminar_button' type="button">Eliminar Publicacion</button>
+          </Link>
+          <Link to={"../"}>
+            <button className='eliminar_button' type="button" onClick={() => {eliminar()}}>Eliminar Publicacion</button>
+          </Link>
         </div>
       </div>
     );

@@ -104,18 +104,36 @@ app.post('/act',(req,res)=>{
     let price = req.body.list_price
     let description = req.body.description
     console.log(req.body)
+    console.log(id)
     odoo.connect(function (err) {
         if (err) { return console.log(err); }
         var inParams = [];
-        inParams.push([['id', '=', id]])
-        inParams.push({'qty_available': qty_available});
+        inParams.push([id])
+        inParams.push({'name': name, 'list_price': price, 'qty_available': qty_available, 'description': description});
         var params = [];
         params.push(inParams);      
-        odoo.execute_kw('product.product', 'search_read', params, function (err, value) {
+        odoo.execute_kw('product.product', 'write', params, function (err, value) {
             if (err) { return console.log(err); }
             res.send(value)
         });
-      })
+    })
+})
+
+app.post('/delete',(req,res)=>{
+    let id = req.body.id;
+    console.log(req.body)
+    console.log(id)
+    odoo.connect(function (err) {
+        if (err) { return console.log(err); }
+        var inParams = [];
+        inParams.push([id])
+        var params = [];
+        params.push(inParams);
+        odoo.execute_kw('product.product', 'unlink', params, function (err, value) {
+            if (err) { return console.log(err); }
+            res.send(value)
+        });
+    })
 })
 
 app.listen(port, () => {
