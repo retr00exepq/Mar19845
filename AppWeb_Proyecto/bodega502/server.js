@@ -136,6 +136,35 @@ app.post('/delete',(req,res)=>{
     })
 })
 
+app.post('/pedido',(req,res)=>{
+    let id = req.body.id;
+    let price = req.body.list_price
+    console.log(req.body)
+    console.log(id)
+    odoo.connect(function (err) {
+        if (err) { return console.log(err); }
+        var inParams = [];
+        inParams.push([id])
+        var params = [{
+            'origin': "A555",
+            'client_order_ref': "B555",
+            'pricelist_id': 1,
+            'order_line': [({
+                'name': 'Pedido',
+                'product_id': id,
+                'product_uom_qty': 2,
+                'qty_delivered': 2,
+                'price_unit': price
+            })]
+        }];
+        params.push(inParams);
+        odoo.execute_kw('sale.order', 'create', params, function (err, value) {
+            if (err) { return console.log(err); }
+            res.send(value)
+        });
+    })
+})
+
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`)
 })

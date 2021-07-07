@@ -39,8 +39,13 @@ export default function Producto({ match }) {
                     <div>Descripción: {product.description}</div>
                     <div>Cantidad disponible: {product.qty_available}</div>
                     <Link to={`/editor/${product.id}`}>
-                        <button className="card__btn">Editar product</button>
+                        <button className="card__btn">Editar Producto</button>
                     </Link>
+                    <div>
+                        <Link to={`/compra/${product.id}`}>
+                            <button className="card__btn">Comprar Producto</button>
+                        </Link>
+                    </div>
                 </Col>
             </Row>
             <Row xs={12} sm={12} md={12} lg={12}>

@@ -6,6 +6,7 @@ import Ofertas from "./componentes/Inicio/CaruselOfertas";
 import Categorias from "./componentes/Inicio/Categorias";
 import Producto from "./componentes/Producto/Producto";
 import Editor from "./componentes/Editor/Editor";
+import Compra from "./componentes/Compra/Compra";
 import Login from "./componentes/Login/Login"
 import './custom.scss';
 import React, { Component } from "react";
@@ -25,9 +26,11 @@ function App() {
           <Route path='/' exact component={Home} />
           <Route path='/oferta' exact component={Ofertas} />
           <Route path='/editor' exact component={Editor} />
+          <Route path='/compra' exact component={Compra} />
           
           <Route path='/producto/:id' component={Producto} />
           <Route path='/editor/:id' component={Editor} />
+          <Route path='/compra/:id' component={Compra} />
         </Switch>
 
       </div>
@@ -37,7 +40,7 @@ function App() {
 const Home = () => {
   return (
     <div>
-      <Login/>
+      <Categorias/>
     </div>
   )
 }
