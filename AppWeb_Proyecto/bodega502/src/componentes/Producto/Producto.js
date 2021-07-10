@@ -4,7 +4,6 @@ import sillon from './sillonPrueba.jpg';
 import { Container } from 'react-bootstrap';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
-import Carousel from './Carrousel';
 import React, { Component, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 //import odoo from '..../src/oddo.js'
@@ -30,9 +29,9 @@ export default function Producto({ match }) {
         <Container fluid>
             <Row >
                 <Col xs={6} sm={6} md={6} lg={6} className="Ima">
-                    <Carousel></Carousel>
-
+                    <img src = {sillon} alt="imagen de un sillon" ></img>
                 </Col>
+
                 <Col xs={6} sm={6} md={6} lg={6} className="Des">
                     <div>Nombre: {product.display_name}</div>
                     <div>Precio: {product.list_price}</div>
@@ -47,9 +46,6 @@ export default function Producto({ match }) {
                         </Link>
                     </div>
                 </Col>
-            </Row>
-            <Row xs={12} sm={12} md={12} lg={12}>
-                <Col xs={12} sm={12} md={12} lg={12} className="Rec">recomendaciones</Col>
             </Row>
         </Container>
     );

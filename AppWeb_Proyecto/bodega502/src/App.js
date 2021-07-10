@@ -32,7 +32,6 @@ function App() {
           <Route path='/editor/:id' component={Editor} />
           <Route path='/compra/:id' component={Compra} />
         </Switch>
-
       </div>
     </Router>
   );
