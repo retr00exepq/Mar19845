@@ -51,9 +51,7 @@ export default function Compra({ match }) {
           <Link to={"../"}>
             <button className='return_button' type="button">Regresar al Catalogo</button>
           </Link>
-          <Link to={"../"}>
-            <button className='venta_button' type="button" onClick={() => {venta()}}>Comprar Producto</button>
-          </Link>
+          <button className='venta_button' type="button" onClick={() => {venta()}}>Comprar Producto</button>
         </div>
       </div>
     );
