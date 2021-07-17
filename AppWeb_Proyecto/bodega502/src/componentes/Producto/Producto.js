@@ -1,9 +1,14 @@
 /* eslint-disable no-unused-vars */
 import './Producto.css';
 import sillon from './sillonPrueba.jpg';
-import { Container } from 'react-bootstrap';
-import Col from 'react-bootstrap/Col';
-import Row from 'react-bootstrap/Row';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@mui/material/Typography';
+import Stack from '@mui/material/Stack'
+import Button from '@mui/material/Button';
+import Card from '@mui/material/Card';
+import CardMedia from '@mui/material/CardMedia';
+
+
 import React, { Component, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 //import odoo from '..../src/oddo.js'
@@ -25,29 +30,30 @@ export default function Producto({ match }) {
     useEffect(() => {
         prueba()
     }, []);
-    return (
-        <Container fluid>
-            <Row >
-                <Col xs={6} sm={6} md={6} lg={6} className="Ima">
-                    <img src = {sillon} alt="imagen de un sillon" ></img>
-                </Col>
 
-                <Col xs={6} sm={6} md={6} lg={6} className="Des">
-                    <div>Nombre: {product.display_name}</div>
-                    <div>Precio: {product.list_price}</div>
-                    <div>Descripción: {product.description}</div>
-                    <div>Cantidad disponible: {product.qty_available}</div>
-                    <Link to={`/editor/${product.id}`}>
-                        <button className="card__btn">Editar Producto</button>
-                    </Link>
-                    <div>
-                        <Link to={`/compra/${product.id}`}>
-                            <button className="card__btn">Comprar Producto</button>
-                        </Link>
-                    </div>
-                </Col>
-            </Row>
-        </Container>
+    return (
+        <Grid container spacing = {3}>
+            <Grid item>
+                    <Card sx ={{width: 600, height: 600}} elevation = {5}>
+                        <CardMedia component = "img" image = {sillon} alt = {product.display_name} height = "300px" width = "300px"></CardMedia>
+                    </Card>
+            </Grid>
+            <Grid item md = {6}>
+                <Typography variant = "h3" component = "div" >Nombre: 
+                <Typography variant = "h4" color = "text.secondary">{product.display_name}</Typography></Typography>
+                <Typography variant = "h3" component = "div" >Precio:
+                <Typography variant = "h4" color = "text.secondary">{product.list_price}</Typography></Typography>
+                <Typography variant = "h3" component = "div" >Descripción: 
+                <Typography variant = "h4" color = "text.secondary">Esta es una descripción {product.description}</Typography></Typography>
+                <Typography variant = "h3" component = "div" >Cantidad disponible: 
+                <Typography variant = "h4" color = "text.secondary">{product.qty_available}</Typography></Typography>
+
+            <Stack spacing = {2} direction = "column" >
+                <Button href = {`/editor/${product.id}`} variant = "contained" size = "large" >Editar Producto</Button>
+                <Button href = {`/compra/${product.id}`} variant = "contained" size = "large">Pedir Producto</Button>
+            </Stack>
+            </Grid>
+        </Grid>
     );
 
 
