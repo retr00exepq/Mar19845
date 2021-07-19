@@ -140,20 +140,13 @@ app.post('/pedido',(req,res)=>{
     let id = req.body.id;
     let price = req.body.list_price
     let vals = {
-        'origin': "A555",
-        'client_order_ref': "B555",
         'pricelist_id': 1,
         'partner_id': 8,
-        'partner_invoice_id': 8,
-        'partner_shipping_id': 8,
-        'order_line': {
-            'name': 'Pedido',
-            'product_id': id,
-            'product_uom_qty': 2,
-            'qty_delivered': 2,
-            'price_unit': price,
-            'candidate_id': 1
-        }
+        'session_id': 1,
+        'amount_tax': 2 * price,
+        'amount_total': 2 * price + 100,
+        'amount_paid': 2 * price + 100,
+        'amount_return': 0,
     }
     odoo.connect(function (err) {
         if (err) { return console.log(err); }
