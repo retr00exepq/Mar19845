@@ -17,7 +17,7 @@ import { Link } from "react-router-dom";
 export default function Producto({ match }) {
     const [product, SetProduct] = useState({});
     async function prueba() {
-        await fetch('http://localhost:3001/getProduct',{method: "POST", 
+        await fetch('http://18.116.48.246:3001/getProduct',{method: "POST", 
         headers: { "content-type": "application/json" },
         body: JSON.stringify({"id": match.params.id})})
             .then(response => response.json())

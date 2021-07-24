@@ -8,7 +8,7 @@ function Categorias() {
 
 
     async function prueba() {
-        await fetch('http://localhost:3001/productos')
+        await fetch('http://18.116.48.246:3001/productos')
             .then(response => response.json())
             .then(data =>
                 setUser(data)
