@@ -136,84 +136,55 @@ app.post('/delete',(req,res)=>{
     })
 })
 
-// app.post('/pedido',(req,res)=>{
-//     let id = req.body.id;
-//     let price = req.body.list_price
-//     let vals = {
-//         'pricelist_id': 1,
-//         'partner_id': 8,
-//         'session_id': 1,
-//         'amount_tax': 2 * price,
-//         'amount_total': 2 * price + 100,
-//         'amount_paid': 2 * price + 100,
-//         'amount_return': 0,
-//     }
-//     odoo.connect(function (err) {
-//         if (err) { return console.log(err); }
-//         var inParams = [];
-//         inParams.push([vals])
-//         var params = [];
-//         params.push(inParams);
-//         odoo.execute_kw('pos.order', 'create', params, function (err, value) {
-//             if (err) { return console.log(err); }
-//             res.send(value)
-//         });
-//     })
-// })
-
-// app.post('/pedido',(req,res)=>{
-//     let id = req.body.id;
-//     let price = req.body.list_price
-//     let vals = {
-//         'price_subtotal': 100,
-//         'price_subtotal_incl':100,
-//         'product_id':(0, 0, {'id':id}),
-//         'name': "ff",
-//         'order_id':(0, 0, {'id':1})
-//     }
-//     let line = (0, 0, vals)
-//     let vals1 = {
-//         'pricelist_id': 1,
-//         'partner_id': 8,
-//         'session_id': 1,
-//         'amount_tax': 2 * price,
-//         'amount_total': 2 * price + 100,
-//         'amount_paid': 2 * price + 100,
-//         'amount_return': 0,
-//         'id': 10,
-//         'lines': line
-//     }
-//     // odoo.connect(function (err) {
-//     //     if (err) { return console.log(err); }
-//     //     var inParams = [];
-//     //     inParams.push([vals])
-//     //     var params = [];
-//     //     params.push(inParams);
-//     //     odoo.execute_kw('pos.order.line', 'create', params, function (err, value) {
-//     //         if (err) { return console.log(err); }
-//     //         res.send(value)
-//     //     });
-//     // })
-//     odoo.connect(function (err) {
-//         if (err) { return console.log(err); }
-//         var inParams = [];
-//         inParams.push([vals1])
-//         var params = [];
-//         params.push(inParams);
-//         odoo.execute_kw('pos.order', 'create', params, function (err, value) {
-//             if (err) { return console.log(err); }
-//             res.send(value)
-//         });
-//     })
-// })
+/**
+app.post('/pedido',(req,res)=>{
+    let id = req.body.id;
+    let price = req.body.list_price
+    
+    odoo.connect(function (err) {
+        if (err) { return console.log(err); }
+        var inParams = [];
+        inParams.push([{
+            'pricelist_id': 1,
+            'partner_id': 8,
+            'session_id': 1,
+            'amount_tax': 2 * price,
+            'amount_total': 2 * price + 100,
+            'amount_paid': 2 * price + 100,
+            'amount_return': 0
+                }])
+        var params = []
+        params.push(inParams);
+        odoo.execute_kw('pos.order', 'create', params, function (err, value) {
+            if (err) { return console.log(err); }
+            
+            let order_id = value[0]
+            var inParams = [];
+            inParams.push([{
+                'product_id': id,
+                'order_id': order_id,
+                'price_subtotal': 2 * price,
+                'price_subtotal_incl': 2 * price + 100,
+                    }])
+            var params = []
+            params.push(inParams);
+            odoo.execute_kw('pos.order.line', 'create', params, function (err, value) {
+                if (err) { return console.log(err); }
+            });
+        });
+    })
+})
+*/
 
 app.post('/pedido',(req,res)=>{
+    let product_id = req.body.id;
     let price = req.body.list_price
+    let display_name = req.body.display_name
     let user_name = req.body.user_name
     let user_mobile = req.body.user_mobile
     let user_email = req.body.user_email
     let user_adress = req.body.user_adress
-
+    
     let user_vals = {
         'email': user_email,
         'email_formatted': user_email,
@@ -233,10 +204,10 @@ app.post('/pedido',(req,res)=>{
         inParams.push([['email', '=', user_email]])
         var params = [];
         params.push(inParams);
-        odoo.execute_kw('res.partner', 'search', params, function (err, value) {
+        odoo.execute_kw('res.partner', 'search', params, function (err, value_user) {
             if (err) { return console.log(err); }
-        
-            if (value.length === 0){
+            
+            if (value_user.length === 0){
                 var inParams = [];
                 inParams.push(user_vals)
                 var params = [];
@@ -248,10 +219,10 @@ app.post('/pedido',(req,res)=>{
                     inParams.push([['email', '=', user_email]])
                     var params = [];
                     params.push(inParams);
-                    odoo.execute_kw('res.partner', 'search', params, function (err, value) {
+                    odoo.execute_kw('res.partner', 'search', params, function (err, value_0) {
                         if (err) { return console.log(err); }
                         
-                        let id_user = value[0]
+                        let id_user = value_0[0]
                         inParams = [];
                         inParams.push({
                             'pricelist_id': 1,
@@ -264,13 +235,29 @@ app.post('/pedido',(req,res)=>{
                         })
                         params = [];
                         params.push(inParams);
-                        odoo.execute_kw('pos.order', 'create', params, function (err, value) {
+                        odoo.execute_kw('pos.order', 'create', params, function (err, value_1) {
                             if (err) { return console.log(err); }
+                            
+                            let order_id = value_1
+                            var inParams = [];
+                            inParams.push([{
+                                'product_id': product_id,
+                                'order_id': order_id,
+                                'price_subtotal': 2 * price,
+                                'price_subtotal_incl': 2 * price + 100,
+                                'display_name': display_name,
+                                'full_product_name': display_name 
+                                    }])
+                            var params = []
+                            params.push(inParams);
+                            odoo.execute_kw('pos.order.line', 'create', params, function (err, value_5) {
+                                if (err) { return console.log(err); }
+                            });
                         });
                     });
                 });
             }else{
-                let id_user = value[0]
+                let id_user = value_user[0]
                 inParams = [];
                 inParams.push({
                     'pricelist_id': 1,
@@ -283,8 +270,24 @@ app.post('/pedido',(req,res)=>{
                 })
                 params = [];
                 params.push(inParams);
-                odoo.execute_kw('pos.order', 'create', params, function (err, value) {
+                odoo.execute_kw('pos.order', 'create', params, function (err, value_2) {
                     if (err) { return console.log(err); }
+                    
+                    let order_id = value_2
+                    var inParams = [];
+                    inParams.push([{
+                        'product_id': product_id,
+                        'order_id': order_id,
+                        'price_subtotal': 2 * price,
+                        'price_subtotal_incl': 2 * price + 100,
+                        'display_name': display_name,
+                        'full_product_name': display_name 
+                            }])
+                    var params = []
+                    params.push(inParams);
+                    odoo.execute_kw('pos.order.line', 'create', params, function (err, value_5) {
+                        if (err) { return console.log(err); }
+                    });
                 });
             }
         });

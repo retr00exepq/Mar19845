@@ -23,9 +23,11 @@ export default function Compra({ match }) {
     if (userName.length === 0 || userPhone.length === 0 || userMail.length === 0 || userAdress.length === 0){
       alert('Debe llenar todos los campos')
     }else{
+      alert('Compra realizada con exito.')
       await fetch('http://18.116.48.246:3001/pedido',{method: "POST", 
       headers: { "content-type": "application/json" },
       body: JSON.stringify({"id": parseInt(match.params.id),
+                          "display_name": product.display_name,
                           "list_price": parseFloat(product.list_price),
                           "user_name": userName,
                           "user_mobile": userPhone,
@@ -35,7 +37,7 @@ export default function Compra({ match }) {
         .then(response => response.json())
         .then(data =>{
             SetProduct(data[0])          
-        })
+      })
     }
   }
 
