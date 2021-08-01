@@ -1,8 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Compra_style.css";
-
+import Button from '@material-ui/core/Button'
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import { purple, red, lightGreen, orange, green } from '@mui/material/colors';
+import Box from '@mui/material/Box';
+import TextField from '@mui/material/TextField';
+import Grid from "@material-ui/core/Grid";
 export default function Compra({ match }) { 
+
+
+
 
   const [product, SetProduct] = useState({});
     async function prueba() {
@@ -61,48 +69,99 @@ export default function Compra({ match }) {
   const onChangeUserAdress = event => {
     setUserAdress( event.target.value );
   };
-
+  const theme = createTheme({
+    palette: {
+      primary: green,
+      secondary: orange,
+    },
+  });
     return (
+
       <div className="main_div_compra">
+        <div>
+          <text style={{fontSize:'125%'}}>Complete el formulario para finalizar su compra</text>
+        </div>
         <div className="compra_grid_row">
-          <div className="compra_grid_column">
-            <div>
-              <text>Nombre: {product.display_name}</text>
-            </div>
-            <div>
-              <text>Precio: {product.list_price}</text>
-            </div>
+          <div className="compra_grid_column" >
+          <div style={{marginTop: "10px",marginLeft: "10px"}}>
+          <text style={{fontSize:'85%'}}>Ingrese sus datos:</text>
+          <form className="contact-form" alignItems="center">
+
+        <br />
+
+        
+        <TextField
+          id="outlined-basic"
+          placeholder=" Nombre"
+          
+          variant="standard"
+          
+          required
+          type="text"
+          size="large"
+          onChange={onChangeUserName}
+        />
+       
+        <TextField
+          id="outlined-basic"
+          style={{marginLeft: '50px',
+        marginBottom:'35px'}}
+          placeholder=" email"
+          variant="standard"
+          onChange={onChangeUserMail}
+          required
+          type="email"
+        />
+        <br />
+
+        <TextField
+          id="outlined-basic"
+          placeholder=" Direccion"
+          
+          variant="standard"
+          onChange={onChangeUserAdress}
+          required
+        />
+        
+        <TextField
+          id="outlined-basic"
+          style={{marginLeft: '50px',
+          marginBottom:'10px'}}
+          placeholder=" Telefono"
+          onChange={onChangeUserPhone}
+          variant="standard"
+          
+          required
+        />
+        
+
+      </form>
+   
+        </div>
           </div>
           <div className="compra_grid_column">
             <div>
-                <text>Descripcion: {product.description}</text>
+                          
+            <text style={{fontWeight:'bold'}} > {product.display_name}</text>
+            
+            <div>
+              <text>Q. {product.list_price}</text>
+            </div>
+                <text style={{fontSize:'85%'}}>Descripcion: {product.description}</text>
             </div>
           </div>
         </div>
-        <div style={{marginTop: "10px"}}>
-          <text style={{textAlign: 'center'}}>Sus datos</text>
-          <div>
-              <text>Nombre: </text>
-              <input type="text" name="name" maxLength={100} onChange={onChangeUserName}/>
-          </div>
-          <div>
-              <text>Telefono: </text>
-              <input type="text" name="name" maxLength={100} onChange={onChangeUserPhone}/>
-          </div>
-          <div>
-              <text>Correo:</text>
-              <input type="text" name="name" maxLength={100} onChange={onChangeUserMail}/>
-          </div>
-          <div>
-              <text>Direccion:</text>
-              <input type="text" name="name" maxLength={100} onChange={onChangeUserAdress}/>
-          </div>
-        </div>
-        <div className="compra_grid_row" style={{marginTop: "400px", left: "26%", gap: "10rem"}}>
+       
+        <div className="compra_grid_row" style={{marginTop: "100px", left: "26%", gap: "10rem"}}>
+        
           <Link to={"../"}>
-            <button className='return_button' type="button">Regresar al Catalogo</button>
+            <Button style={{textTransform: 'initial', 
+          marginLeft:'20px'}} variant="contained" color="primary">Regresar al Catalogo</Button>
           </Link>
-          <button className='venta_button' type="button" onClick={() => {venta()}}>Comprar Producto</button>
+          <ThemeProvider theme={theme}>
+          <Button style={{textTransform: 'initial', 
+          marginLeft:'10px'}} variant="contained" color="secondary" onClick={() => {venta()}}>Comprar Producto</Button>
+          </ThemeProvider>
         </div>
       </div>
     );
