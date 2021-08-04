@@ -118,3 +118,27 @@ button {
     border-color: black;
     border-width: 1px;
 }
+
+.texto{
+    position: absolute;
+    top: 24vh;
+    left: 2vw;
+}
+
+.campos{
+    position: absolute;
+    top: 24vh;
+    left: 22vw;
+}
+
+.desc{
+    position: absolute;
+    top: 15vh;
+    left: 55vw;
+}
+
+.botones{
+    position: absolute;
+    top: 72vh;
+    left: 13vw;
+}
