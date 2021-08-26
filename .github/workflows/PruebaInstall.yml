@@ -20,7 +20,7 @@ jobs:
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-    - uses: ./.Bodega502-Proyecto-Ing-Software/AppWeb_Proyecto/bodega502/checkout@v2
+    - uses: ./.Bodega502-Proyecto-Ing-Software/AppWeb_Proyecto/bodega502/actions/checkout@v2
     - name: Use Node.js ${{ matrix.node-version }}
       uses: actions/setup-node@v2
       with:
