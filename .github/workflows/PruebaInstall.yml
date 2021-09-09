@@ -30,7 +30,8 @@ jobs:
         node-version: ${{ matrix.node-version }}
         cache: 'npm'
         cache-dependency-path: AppWeb_Proyecto/bodega502/package-lock.json
-        
+      
+    - run: npm install
     - run: npm build --if-present
     - run: npm start
     - run: npm test
