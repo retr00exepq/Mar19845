@@ -68,7 +68,7 @@ export default function Navbar() {
             component="div"
             sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
           >
-            La Bodega502XDS
+            La Bodega502
           </Typography>
           <Search sx={{ m: 2 }}>
             <SearchIconWrapper>
