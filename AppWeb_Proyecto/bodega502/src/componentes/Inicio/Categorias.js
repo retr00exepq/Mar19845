@@ -2,6 +2,9 @@ import React, { Component, useEffect, useState } from "react";
 import './Categ.scss'
 import { Link } from "react-router-dom";
 import Spinner from 'react-bootstrap/Spinner';
+import Typography from '@mui/material/Typography';
+
+
 function Categorias() {
     const [productos, setUser] = useState([]);
     const [Loading,setLoading]= useState(false)

@@ -19,7 +19,7 @@ app.get('/', (req, res) => {
     
     odoo.connect(function (err) {
 
-        if (err) { return console.log(err); }
+        if (err) { return err; }
         //console.log('Connected to Odoo server.');
         var inParams = [];
         inParams.push([['active', '=', false]]);
