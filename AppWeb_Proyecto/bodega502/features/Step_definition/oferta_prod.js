@@ -1,24 +1,25 @@
 const assert = require('assert');
 const { Given, When, Then } = require('@cucumber/cucumber');
 
-function Oferta_Prod(oferta) {
-  if (oferta === true){
-    return "El producto tiene descuento debido a daño"
 
-
-  }else{
-    return "El producto no tiene descuento"
+function Oferta(producto) {
+    if (producto === "dañado"){
+      return "se muestra en la seccion de ofertas"
+    }else{
+      return "El producto no esta dañado"
+    }
   }
-}
 
 Given('los encargados determinan que el precio del mismo producto ya no es el mismo debido al daño que recibió', function () {
-  this.producto = ""
+    this.producto = "dañado"
 });
+
 
 When('el producto reciba su descuento', function () {
-  this.respuesta = Oferta_Prod(this.oferta)
+    this.respuesta = Oferta(this.producto)
 });
 
-Then('será presentado en la sección de descuento con una explicación del daño,{string}', function (respuestaFinal) {
-  assert.strictEqual(this.respuesta, respuestaFinal);
+
+Then('el producto {string}', function (respuestaFinal) {
+    assert.strictEqual(this.respuesta, respuestaFinal);
 });
