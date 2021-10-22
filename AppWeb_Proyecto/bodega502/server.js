@@ -28,8 +28,8 @@ app.get('/', (req, res) => {
         params.push(inParams);
 
         odoo.execute_kw('product.product', 'search_read', params, function (err, value) {
-            if (err) { return console.log(err); }
-            console.log('Result: ', value);
+            if (err) { return (err); }
+            
             res.send(value)
         });
     });
@@ -103,8 +103,7 @@ app.post('/act',(req,res)=>{
     let name = req.body.display_name
     let price = req.body.list_price
     let description = req.body.description
-    console.log(req.body)
-    console.log(id)
+    
     odoo.connect(function (err) {
         if (err) { return console.log(err); }
         var inParams = [];
