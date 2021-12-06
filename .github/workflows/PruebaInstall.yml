@@ -32,4 +32,5 @@ jobs:
           cache-dependency-path: AppWeb_Proyecto/bodega502/package-lock.json
       
       - run: npm install
+      - run: npm test
       - run: npm start & npx wait-on http://localhost:3000
