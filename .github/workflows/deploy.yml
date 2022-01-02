@@ -16,7 +16,7 @@ jobs:
         uses: appleboy/ssh-action@master
         with:
           port: 4566
-          host: ${{ secrets.HOST }}
+          host: 3.138.196.242
           username: ${{ secrets.AWS_USER }}
           key: ${{ secrets.AWS_KEY }}
-          script: sh deploy.sh
+          script: sh /var/www/html/Bodega502-Proyecto-Ing-Software/AppWeb_Proyecto/bodega502/deploy.sh
