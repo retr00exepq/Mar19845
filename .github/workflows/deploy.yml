@@ -15,7 +15,7 @@ jobs:
       - name: executing remote ssh commands using ssh key
         uses: appleboy/ssh-action@master
         with:
-          port: 4566
+          port: 4565
           host: 3.141.15.114
           username: ${{ secrets.AWS_USER }}
           key: ${{ secrets.AWS_KEY }}
