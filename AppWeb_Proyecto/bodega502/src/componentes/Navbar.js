@@ -62,6 +62,7 @@ const useStyles = makeStyles((theme) => ({
   },
   menuButton: {
     marginRight: theme.spacing(0),
+    width: '100'
   },
 }));
 
@@ -71,14 +72,6 @@ export default function Navbar() {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" style={{ height: '11vh'}} >
         <Toolbar>
-        <IconButton
-            size="large"
-            edge="start"
-            color="inherit"
-            aria-label="menu"
-          >
-            <MenuIcon />
-          </IconButton>
             <Link to='/' >
               <img src={bodega} alt='Bodega 502' className='logo'></img>
             </Link>

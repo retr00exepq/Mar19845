@@ -11,10 +11,11 @@ import Fade from '@mui/material/Fade';
 export default function NavbarPro() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
+
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
-  const handleClose = () => {
+  const handleMenuCLick = () => {
     setAnchorEl(null);
   };
 
@@ -41,19 +42,19 @@ export default function NavbarPro() {
                 }}
                 anchorEl={anchorEl}
                 open={open}
-                onClose={handleClose}
+                onClose={handleMenuCLick}
                 TransitionComponent={Fade}
               >
-                  <MenuItem onClick={handleClose}>Articulos de cocina</MenuItem>
-                  <MenuItem onClick={handleClose}>Camas</MenuItem>
-                  <MenuItem onClick={handleClose}>Electrodomesticos</MenuItem>
-                  <MenuItem onClick={handleClose}>Mesas</MenuItem>
-                  <MenuItem onClick={handleClose}>Sillas/Bancos</MenuItem>
+                  <MenuItem onClick={handleMenuCLick}>Articulos de cocina</MenuItem>
+                  <MenuItem onClick={handleMenuCLick}>Camas</MenuItem>
+                  <MenuItem onClick={handleMenuCLick}>Electrodomesticos</MenuItem>
+                  <MenuItem onClick={handleMenuCLick}>Mesas</MenuItem>
+                  <MenuItem onClick={handleMenuCLick}>Sillas/Bancos</MenuItem>
                 </Menu>
 
             <Button 
              color="inherit" 
-             id="fade-button2"
+             id="fade-button1"
              aria-controls="fade-menu"
              sx={{ bgcolor: 'warning.main' }}
              aria-haspopup="true"
@@ -68,19 +69,19 @@ export default function NavbarPro() {
                 }}
                 anchorEl={anchorEl}
                 open={open}
-                onClose={handleClose}
+                onClose={handleMenuCLick}
                 TransitionComponent={Fade}
               >
-                  <MenuItem onClick={handleClose}>Pesas</MenuItem>
-                  <MenuItem onClick={handleClose}>Maquinas</MenuItem>
-                  <MenuItem onClick={handleClose}>Bancos</MenuItem>
+                  <MenuItem onClick={handleMenuCLick}>Pesas</MenuItem>
+                  <MenuItem onClick={handleMenuCLick}>Maquinas</MenuItem>
+                  <MenuItem onClick={handleMenuCLick}>Bancos</MenuItem>
                 </Menu>
           </div>
 
           <div> 
             <Button 
              color="inherit" 
-             id="fade-button3"
+             id="fade-button1"
              aria-controls="fade-menu"
              aria-haspopup="true"
              aria-expanded={open ? 'true' : undefined}
@@ -94,18 +95,18 @@ export default function NavbarPro() {
                 }}
                 anchorEl={anchorEl}
                 open={open}
-                onClose={handleClose}
+                onClose={handleMenuCLick}
                 TransitionComponent={Fade}
               >
-                  <MenuItem onClick={handleClose}>Mascarillas</MenuItem>
-                  <MenuItem onClick={handleClose}>Guantes</MenuItem>
+                  <MenuItem onClick={handleMenuCLick}>Mascarillas</MenuItem>
+                  <MenuItem onClick={handleMenuCLick}>Guantes</MenuItem>
                 </Menu>
           </div>
 
           <div> 
             <Button 
              color="inherit" 
-             id="fade-button4"
+             id="fade-button1"
              aria-controls="fade-menu"
              aria-haspopup="true"
              aria-expanded={open ? 'true' : undefined}
@@ -119,12 +120,12 @@ export default function NavbarPro() {
                 }}
                 anchorEl={anchorEl}
                 open={open}
-                onClose={handleClose}
+                onClose={handleMenuCLick}
                 TransitionComponent={Fade}
               >
-                  <MenuItem onClick={handleClose}>Accesorio relojes</MenuItem>
-                  <MenuItem onClick={handleClose}>Baterias</MenuItem>
-                  <MenuItem onClick={handleClose}>Jardineria y extensiones</MenuItem>
+                  <MenuItem onClick={handleMenuCLick}>Accesorio relojes</MenuItem>
+                  <MenuItem onClick={handleMenuCLick}>Baterias</MenuItem>
+                  <MenuItem onClick={handleMenuCLick}>Jardineria y extensiones</MenuItem>
                  
                 </Menu>
           </div>
