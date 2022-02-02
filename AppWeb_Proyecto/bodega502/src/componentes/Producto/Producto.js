@@ -49,7 +49,6 @@ export default function Producto({ match }) {
                 <Typography variant = "h4" color = "text.secondary">{product.qty_available}</Typography></Typography>
 
             <Stack spacing = {2} direction = "column" >
-                <Button href = {`/editor/${product.id}`} variant = "contained" size = "large" >Editar Producto</Button>
                 <Button href = {`/compra/${product.id}`} variant = "contained" size = "large">Pedir Producto</Button>
             </Stack>
             </Grid>
