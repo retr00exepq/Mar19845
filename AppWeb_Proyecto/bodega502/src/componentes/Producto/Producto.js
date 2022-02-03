@@ -17,7 +17,7 @@ import { Link } from "react-router-dom";
 export default function Producto({ match }) {
     const [product, SetProduct] = useState({});
     async function prueba() {
-        await fetch('http://18.116.48.246:3001/getProduct',{method: "POST", 
+        await fetch('http://18.216.107.92:3001/getProduct',{method: "POST", 
         headers: { "content-type": "application/json" },
         body: JSON.stringify({"id": match.params.id})})
             .then(response => response.json())
@@ -49,6 +49,7 @@ export default function Producto({ match }) {
                 <Typography variant = "h4" color = "text.secondary">{product.qty_available}</Typography></Typography>
 
             <Stack spacing = {2} direction = "column" >
+                <Button href = {`/editor/${product.id}`} variant = "contained" size = "large" >Editar Producto</Button>
                 <Button href = {`/compra/${product.id}`} variant = "contained" size = "large">Pedir Producto</Button>
             </Stack>
             </Grid>

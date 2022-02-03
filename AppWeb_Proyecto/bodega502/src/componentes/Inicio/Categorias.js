@@ -11,7 +11,7 @@ function Categorias() {
 
 
     async function prueba() {
-        await fetch('http://18.116.48.246:3001/productos')
+        await fetch('http://18.216.107.92:3001/productos')
             .then(response => response.json())
             .then(data =>
                 setUser(data)
