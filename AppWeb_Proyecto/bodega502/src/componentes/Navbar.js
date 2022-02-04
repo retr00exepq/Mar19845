@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import bodega from '../imagenes/bodega502.jpg';
 import { Link } from "react-router-dom";
 import { styled, alpha } from '@mui/material/styles';
@@ -10,8 +10,6 @@ import Typography from '@mui/material/Typography';
 import InputBase from '@mui/material/InputBase';
 import SearchIcon from '@mui/icons-material/Search';
 import AccountCircle from '@mui/icons-material/AccountCircle';
-import IconButton from '@material-ui/core/IconButton';
-import MenuIcon from '@material-ui/icons/Menu';
 
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',

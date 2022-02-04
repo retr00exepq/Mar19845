@@ -1,16 +1,18 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React from "react";
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import { Button, MenuItem, Menu} from "@material-ui/core"
 import Fade from '@mui/material/Fade';
-
+import Grid from '@material-ui/core/Grid';
 
 
 export default function NavbarPro() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
+  const open1 = Boolean(anchorEl);
+  const open2 = Boolean(anchorEl);
+  const open3 = Boolean(anchorEl);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -24,13 +26,14 @@ export default function NavbarPro() {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar sx={{ bgcolor: 'warning.main' }} position="static" style={{alignItems: 'center', height: '8.5vh'}}>
         <Toolbar>
-          <div> 
+          <Grid> 
             <Button 
              color="inherit" 
              id="fade-button1"
              sx={{ bgcolor: 'warning.main' }}
              aria-controls="fade-menu"
              aria-haspopup="true"
+             
              aria-expanded={open ? 'true' : undefined}
              onClick={handleClick}
             >Hogar
@@ -58,7 +61,7 @@ export default function NavbarPro() {
              aria-controls="fade-menu"
              sx={{ bgcolor: 'warning.main' }}
              aria-haspopup="true"
-             aria-expanded={open ? 'true' : undefined}
+             aria-expanded={open1 ? 'true' : undefined}
              onClick={handleClick}
             >Ejercicio
             </Button>
@@ -68,7 +71,7 @@ export default function NavbarPro() {
                   'aria-labelledby': 'fade-button',
                 }}
                 anchorEl={anchorEl}
-                open={open}
+                open1={open1}
                 onClose={handleMenuCLick}
                 TransitionComponent={Fade}
               >
@@ -76,15 +79,15 @@ export default function NavbarPro() {
                   <MenuItem onClick={handleMenuCLick}>Maquinas</MenuItem>
                   <MenuItem onClick={handleMenuCLick}>Bancos</MenuItem>
                 </Menu>
-          </div>
+          </Grid>
 
-          <div> 
+          <Grid> 
             <Button 
              color="inherit" 
              id="fade-button1"
              aria-controls="fade-menu"
              aria-haspopup="true"
-             aria-expanded={open ? 'true' : undefined}
+             aria-expanded={open2 ? 'true' : undefined}
              onClick={handleClick}
             >Limpieza
             </Button>
@@ -94,22 +97,22 @@ export default function NavbarPro() {
                   'aria-labelledby': 'fade-button',
                 }}
                 anchorEl={anchorEl}
-                open={open}
+                open2={open2}
                 onClose={handleMenuCLick}
                 TransitionComponent={Fade}
               >
                   <MenuItem onClick={handleMenuCLick}>Mascarillas</MenuItem>
                   <MenuItem onClick={handleMenuCLick}>Guantes</MenuItem>
                 </Menu>
-          </div>
+          </Grid>
 
-          <div> 
+          <Grid> 
             <Button 
              color="inherit" 
              id="fade-button1"
              aria-controls="fade-menu"
              aria-haspopup="true"
-             aria-expanded={open ? 'true' : undefined}
+             aria-expanded={open3 ? 'true' : undefined}
              onClick={handleClick}
             >Otros Productos
             </Button>
@@ -119,7 +122,7 @@ export default function NavbarPro() {
                   'aria-labelledby': 'fade-button',
                 }}
                 anchorEl={anchorEl}
-                open={open}
+                open3={open3}
                 onClose={handleMenuCLick}
                 TransitionComponent={Fade}
               >
@@ -128,7 +131,7 @@ export default function NavbarPro() {
                   <MenuItem onClick={handleMenuCLick}>Jardineria y extensiones</MenuItem>
                  
                 </Menu>
-          </div>
+          </Grid>
           
         </Toolbar>
       </AppBar>
