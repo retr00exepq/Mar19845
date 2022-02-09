@@ -14,7 +14,7 @@ export default function Compra({ match }) {
 
   const [product, SetProduct] = useState({});
     async function prueba() {
-        await fetch('http://18.216.107.92:3001/getProduct',{method: "POST", 
+        await fetch('http://localhost:3001/getProduct',{method: "POST", 
         headers: { "content-type": "application/json" },
         body: JSON.stringify({"id": match.params.id})})
             .then(response => response.json())
@@ -32,7 +32,7 @@ export default function Compra({ match }) {
       alert('Debe llenar todos los campos')
     }else{
       alert('Compra realizada con exito.')
-      await fetch('http://18.216.107.92:3001/pedido',{method: "POST", 
+      await fetch('http://localhost:3001/pedido',{method: "POST", 
       headers: { "content-type": "application/json" },
       body: JSON.stringify({"id": parseInt(match.params.id),
                           "display_name": product.display_name,
