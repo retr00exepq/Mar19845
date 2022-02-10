@@ -7,7 +7,7 @@ export default function Editor({ match }) {
 
   const [product, SetProduct] = useState({});
     async function prueba() {
-        await fetch('http://18.216.107.92:3001/getProduct',{method: "POST", 
+        await fetch('http://localhost:3001/getProduct',{method: "POST", 
         headers: { "content-type": "application/json" },
         body: JSON.stringify({"id": match.params.id})})
             .then(response => response.json())
@@ -21,7 +21,7 @@ export default function Editor({ match }) {
 
   async function actualizar() {
     console.log(newQuantity)
-    await fetch('http://18.216.107.92:3001/act',{method: "POST", 
+    await fetch('http://localhost:3001/act',{method: "POST", 
     headers: { "content-type": "application/json" },
     body: JSON.stringify({"id": parseInt(match.params.id),
                           "display_name": newName === '' ? product.display_name : newName,
@@ -36,7 +36,7 @@ export default function Editor({ match }) {
   }
 
   async function eliminar() {
-    await fetch('http://18.216.107.92:3001/delete',{method: "POST", 
+    await fetch('http://localhost:3001/delete',{method: "POST", 
     headers: { "content-type": "application/json" },
     body: JSON.stringify({"id": parseInt(match.params.id)})})
         .then(response => response.json())
