@@ -5,7 +5,7 @@ import Toolbar from '@mui/material/Toolbar';
 import { Button, MenuItem, Menu} from "@material-ui/core"
 import Fade from '@mui/material/Fade';
 import Grid from '@material-ui/core/Grid';
-
+import { Link } from "react-router-dom";
 
 export default function NavbarPro() {
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -25,50 +25,56 @@ export default function NavbarPro() {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar sx={{ bgcolor: 'warning.main' }} position="static" style={{alignItems: 'center', height: '8.5vh'}}>
         <Toolbar>
-            <Button 
-             color="inherit" 
-             id="fade-button1"
-             sx={{ bgcolor: 'warning.main' }}
-             aria-controls="fade-menu"
-             aria-haspopup="true"
-             
-             aria-expanded={open ? 'true' : undefined}
-             onClick={handleClick}
-            >Hogar
-            </Button>
+            <Link to='/hogar' style={{ textDecoration: 'none', color: 'white' }}>
+              <Button 
+              color="inherit" 
+              id="fade-button1"
+              sx={{ bgcolor: 'warning.main' }}
+              aria-controls="fade-menu"
+              aria-haspopup="true"
               
+              aria-expanded={open ? 'true' : undefined}
+              onClick={handleClick}
+              >Hogar
+              </Button>
+            </Link>
 
-            <Button 
-             color="inherit" 
-             id="fade-button1"
-             aria-controls="fade-menu"
-             sx={{ bgcolor: 'warning.main' }}
-             aria-haspopup="true"
-             aria-expanded={open1 ? 'true' : undefined}
-             onClick={handleClick}
-            >Ejercicio
-            </Button>
-             
-            <Button 
-             color="inherit" 
-             id="fade-button1"
-             aria-controls="fade-menu"
-             aria-haspopup="true"
-             aria-expanded={open2 ? 'true' : undefined}
-             onClick={handleClick}
-            >Limpieza
-            </Button>
-              
-            <Button 
-             color="inherit" 
-             id="fade-button1"
-             aria-controls="fade-menu"
-             aria-haspopup="true"
-             aria-expanded={open3 ? 'true' : undefined}
-             onClick={handleClick}
-            >Otros Productos
-            </Button>
-             
+            <Link to='/oficina' style={{ textDecoration: 'none', color: 'white' }}>
+              <Button 
+              color="inherit" 
+              id="fade-button1"
+              aria-controls="fade-menu"
+              sx={{ bgcolor: 'warning.main' }}
+              aria-haspopup="true"
+              aria-expanded={open1 ? 'true' : undefined}
+              onClick={handleClick}
+              >Utiles de Oficina
+              </Button>
+            </Link>
+
+            <Link to='/luces' style={{ textDecoration: 'none', color: 'white' }}>
+              <Button 
+              color="inherit" 
+              id="fade-button1"
+              aria-controls="fade-menu"
+              aria-haspopup="true"
+              aria-expanded={open2 ? 'true' : undefined}
+              onClick={handleClick}
+              >Luces
+              </Button>
+            </Link>
+            
+            <Link to='/otros' style={{ textDecoration: 'none', color: 'white' }}>
+              <Button 
+              color="inherit" 
+              id="fade-button1"
+              aria-controls="fade-menu"
+              aria-haspopup="true"
+              aria-expanded={open3 ? 'true' : undefined}
+              onClick={handleClick}
+              >Otros Productos
+              </Button>
+            </Link>
           
         </Toolbar>
       </AppBar>

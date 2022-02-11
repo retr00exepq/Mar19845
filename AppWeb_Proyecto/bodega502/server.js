@@ -53,6 +53,64 @@ app.get('/productos', (req, res) => {
       })
     //res.send('Hello World!')
 })
+app.get('/productosHogar', (req, res) => {
+    odoo.connect(function (err) {
+        if (err) { return console.log(err); }
+        //console.log('Connected to Odoo server.');
+        var inParams = [];
+        //inParams.push([['active', '=', false], ['display_name', '=', nombre], ['list_price', '=', precio], ['description': descripcion] ['qty_available', '=', cantidad], ]);
+        inParams.push([])
+        inParams.push(['display_name', 'list_price', 'description', 'qty_available','image_1920']);
+        var params = [];
+        params.push(inParams);
+      
+          odoo.execute_kw('product.product', 'search_read', params, function (err, value) {
+            if (err) { return console.log(err); }
+            value= value.filter(element => element.description==='<p>Articulos de cocina</p>')
+            res.send(value)
+        });
+      })
+    //res.send('Hello World!')
+})
+app.get('/productosOficina', (req, res) => {
+    odoo.connect(function (err) {
+        if (err) { return console.log(err); }
+        //console.log('Connected to Odoo server.');
+        var inParams = [];
+        //inParams.push([['active', '=', false], ['display_name', '=', nombre], ['list_price', '=', precio], ['description': descripcion] ['qty_available', '=', cantidad], ]);
+        inParams.push([])
+        inParams.push(['display_name', 'list_price', 'description', 'qty_available','image_1920']);
+        var params = [];
+        params.push(inParams);
+      
+          odoo.execute_kw('product.product', 'search_read', params, function (err, value) {
+            if (err) { return console.log(err); }
+            value= value.filter(element => element.description==='<p>Utiles oficina</p>')
+            res.send(value)
+        });
+      })
+    //res.send('Hello World!')
+})
+
+app.get('/productosLuces', (req, res) => {
+    odoo.connect(function (err) {
+        if (err) { return console.log(err); }
+        //console.log('Connected to Odoo server.');
+        var inParams = [];
+        //inParams.push([['active', '=', false], ['display_name', '=', nombre], ['list_price', '=', precio], ['description': descripcion] ['qty_available', '=', cantidad], ]);
+        inParams.push([])
+        inParams.push(['display_name', 'list_price', 'description', 'qty_available','image_1920']);
+        var params = [];
+        params.push(inParams);
+      
+          odoo.execute_kw('product.product', 'search_read', params, function (err, value) {
+            if (err) { return console.log(err); }
+            value= value.filter(element => element.description==='<p>Luces</p>')
+            res.send(value)
+        });
+      })
+    //res.send('Hello World!')
+})
 app.post('/getProduct',(req,res)=>{
     let id = req.body.id;
     //console.log(req.body)
