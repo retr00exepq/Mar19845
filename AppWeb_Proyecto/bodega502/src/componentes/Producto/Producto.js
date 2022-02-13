@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import './Producto.css';
 import sillon from './sillonPrueba.jpg';
+import noAvailable from './image_nd.png';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@mui/material/Typography';
 import Stack from '@mui/material/Stack'
@@ -35,7 +36,7 @@ export default function Producto({ match }) {
         <Grid container spacing = {3}>
             <Grid item>
                     <Card sx ={{width: 600, height: 600}} elevation = {5}>
-                        <CardMedia component = "img" image = {sillon} alt = {product.display_name} height = "300px" width = "300px"></CardMedia>
+                        <CardMedia className = 'imagen_producto' component = "img" image = {noAvailable} alt = {product.display_name}/>
                     </Card>
             </Grid>
             <Grid item md = {6}>

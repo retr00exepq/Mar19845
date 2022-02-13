@@ -3,6 +3,7 @@ import './Categ.scss'
 import { Link } from "react-router-dom";
 import Spinner from 'react-bootstrap/Spinner';
 import Typography from '@mui/material/Typography';
+import noAvailable from './image_nd.png';
 
 
 function Categorias() {
@@ -27,7 +28,7 @@ function Categorias() {
         
         return (
             <div className="card">
-                <img src={`data:image/png;base64,${props.img}`} className="card__img" alt='alt' />
+                <img src={noAvailable} className="card__img" alt='alt' />
                 <div className="card__body">
                     <h2 className="card__title">{props.title}</h2>
                     <p className="card__description">{props.description}</p>
@@ -50,7 +51,7 @@ function Categorias() {
                     productos.map(data => {
                         return (
                             <Card
-                                img={data.image_1920}
+                                img={noAvailable}
                                 title={data.display_name}
                                 description={data.description}
                                 price={data.list_price}
